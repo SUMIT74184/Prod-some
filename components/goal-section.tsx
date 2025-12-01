@@ -27,7 +27,17 @@ export function GoalSection({ goals, onAddGoal, onUpdateProgress, onDeleteGoal }
     }
   }
 
-  const todayGoals = goals.filter((goal) => new Date(goal.createdAt).toDateString() === new Date().toDateString())
+  const todayGoals = goals.filter((goal) => {
+    const goalDate = new Date(goal.createdAt).toDateString()
+    const today = new Date().toDateString()
+    return goalDate === today
+  })
+
+  const oldCompletedGoals = goals.filter((goal) => {
+    const goalDate = new Date(goal.createdAt).toDateString()
+    const today = new Date().toDateString()
+    return goalDate !== today && goal.completed
+  })
 
   return (
     <Card className="bg-card border-border">
@@ -112,6 +122,23 @@ export function GoalSection({ goals, onAddGoal, onUpdateProgress, onDeleteGoal }
             ))
           )}
         </div>
+        {oldCompletedGoals.length > 0 && (
+          <div>
+            <h3 className="text-sm font-medium text-muted-foreground mt-4 mb-2">Completed Goals</h3>
+            <div className="space-y-3 max-h-32 overflow-y-auto">
+            {oldCompletedGoals.map((goal) => (
+              <div key={goal.id} className="p-3 rounded-lg bg-secondary/50 space-y-2 group">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4 text-chart-1" />
+                    <span className="text-sm text-muted-foreground line-through">{goal.title}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+            </div>
+          </div>
+        )}
       </CardContent>
     </Card>
   )

@@ -976,6 +976,10 @@
     max-height: var(--radix-select-content-available-height);
   }
 
+  .max-h-32 {
+    max-height: calc(var(--spacing) * 32);
+  }
+
   .max-h-64 {
     max-height: calc(var(--spacing) * 64);
   }

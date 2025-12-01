@@ -1,0 +1,20 @@
+# Ignore node_modules.
+node_modules
+
+# Ignore .next directory.
+.next
+
+# Ignore .git directory.
+.git
+
+# Ignore Dockerfile.
+Dockerfile
+
+# Ignore .dockerignore.
+.dockerignore
+
+# Ignore .gitignore.
+.gitignore
+
+# Ignore README.md
+README.md

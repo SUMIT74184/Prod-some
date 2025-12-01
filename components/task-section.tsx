@@ -25,7 +25,17 @@ export function TaskSection({ tasks, onAddTask, onToggleTask, onDeleteTask }: Ta
     }
   }
 
-  const todayTasks = tasks.filter((task) => new Date(task.createdAt).toDateString() === new Date().toDateString())
+  const todayTasks = tasks.filter((task) => {
+    const taskDate = new Date(task.createdAt).toDateString()
+    const today = new Date().toDateString()
+    return taskDate === today
+  })
+
+  const oldCompletedTasks = tasks.filter((task) => {
+    const taskDate = new Date(task.createdAt).toDateString()
+    const today = new Date().toDateString()
+    return taskDate !== today && task.completed
+  })
 
   return (
     <Card className="bg-card border-border">
@@ -86,6 +96,19 @@ export function TaskSection({ tasks, onAddTask, onToggleTask, onDeleteTask }: Ta
             ))
           )}
         </div>
+        {oldCompletedTasks.length > 0 && (
+          <div>
+            <h3 className="text-sm font-medium text-muted-foreground mt-4 mb-2">Completed Tasks</h3>
+            <div className="space-y-2 max-h-32 overflow-y-auto">
+            {oldCompletedTasks.map((task) => (
+              <div key={task.id} className="flex items-center gap-3 p-3 rounded-lg bg-secondary/50 opacity-60">
+                <Checkbox checked={true} disabled className="border-muted-foreground data-[state=checked]:bg-chart-1 data-[state=checked]:border-chart-1" />
+                <span className="flex-1 text-sm line-through text-muted-foreground">{task.title}</span>
+              </div>
+            ))}
+            </div>
+          </div>
+        )}
       </CardContent>
     </Card>
   )
