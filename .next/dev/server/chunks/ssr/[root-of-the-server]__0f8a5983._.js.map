@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 70, "column": 0}, "map": {"version":3,"sources":["file:///home/sumit/Desktop/Productivity/lib/db.ts"],"sourcesContent":["\"use server\"\nimport mysql from 'mysql2/promise';\n\n// Create a connection pool\nconst pool = mysql.createPool({\n  host: process.env.DB_HOST,\n  user: process.env.DB_USER,\n  password: process.env.DB_PASSWORD,\n  database: process.env.DB_DATABASE,\n  waitForConnections: true,\n  connectionLimit: 10,\n  queueLimit: 0\n});\n\n// Function to execute a query\nexport async function query(sql: string, values?: any[]) {\n  const [rows] = await pool.execute(sql, values);\n  return rows;\n}\n"],"names":[],"mappings":";;;;;AACA;;;;AAEA,2BAA2B;AAC3B,MAAM,OAAO,4IAAK,CAAC,UAAU,CAAC;IAC5B,MAAM,QAAQ,GAAG,CAAC,OAAO;IACzB,MAAM,QAAQ,GAAG,CAAC,OAAO;IACzB,UAAU,QAAQ,GAAG,CAAC,WAAW;IACjC,UAAU,QAAQ,GAAG,CAAC,WAAW;IACjC,oBAAoB;IACpB,iBAAiB;IACjB,YAAY;AACd;AAGO,eAAe,MAAM,GAAW,EAAE,MAAc;IACrD,MAAM,CAAC,KAAK,GAAG,MAAM,KAAK,OAAO,CAAC,KAAK;IACvC,OAAO;AACT;;;IAHsB;;AAAA,+OAAA"}},
+    {"offset": {"line": 102, "column": 0}, "map": {"version":3,"sources":["file:///home/sumit/Desktop/Productivity/.next-internal/server/app/page/actions.js%20%28server%20actions%20loader%29"],"sourcesContent":["export {query as '60a09061703eb4377dace7a92f828207d0e9f1f666'} from 'ACTIONS_MODULE0'\n"],"names":[],"mappings":";AAAA"}}]
+}
